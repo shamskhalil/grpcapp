@@ -1,0 +1,27 @@
+syntax ="proto3";
+
+package orderpb;
+option go_package="./orderpb";
+
+message placeOrderRequest{
+    string item = 1;
+    int32 qty = 2;
+    float price = 3;
+}
+
+message placeOrderResponse{
+    string message = 1;
+}
+
+message getOrderItemsRequest{}
+
+message getOrderItemResponse{
+    string item = 1;
+    int32 qty = 2;
+    float price = 3;
+}
+
+service EcommerceService {
+    rpc placeOrder(placeOrderRequest) returns (placeOrderResponse){};
+    rpc getOrderItems(getOrderItemsRequest)returns (stream getOrderItemResponse){};
+}
